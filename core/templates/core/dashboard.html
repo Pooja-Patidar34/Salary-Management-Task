@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+  <div class="container mt-4">
+    <h2 class="bg-primary text-white p-2 text-center">Dashboard</h2>
+    <div class="row ms-5">
+      <div class="col-md-4">Total Employees: {{ employees }}</div>
+      <div class="col-md-4">This Month Attendance: {{ this_month }}%</div>
+      <div class="col-md-4">Last Month Attendance: {{ last_month }}%</div>
+    </div>
+    <hr>
+    <a href="{% url 'employee_list' %}" class="btn btn-outline-primary mx-5">View Employees</a>
+    <a href="{% url 'salary_list' %}" class="btn btn-outline-secondary mx-5">Salary Details</a>
+    <a href="{% url 'add_employee' %}" class="btn btn-outline-primary mx-5">Add Employees</a>
+    <a href="{% url 'add_salary' %}" class="btn btn-outline-secondary mx-5">Add Salary</a>
+  </div>
+
+{% endblock content %}

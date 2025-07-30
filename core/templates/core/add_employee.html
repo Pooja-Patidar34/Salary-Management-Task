@@ -1,0 +1,57 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+  <div class="container mt-4 w-50">
+    <h2 class="text-center text-white bg-primary p-3 rounded">Add Employee</h2>
+
+    <div class="card shadow mt-4">
+      <div class="card-body">
+        <form method="POST" class="">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="id_name" class="form-label">Name</label>
+            <input type="text" name="name" id="id_name" class="form-control" value="{{ form.name.value|default:'' }}">
+            {% if form.name.errors %}
+              <div class="text-danger">{{ form.name.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="id_email" class="form-label">Email</label>
+            <input type="email" name="email" id="id_email" class="form-control" value="{{ form.email.value|default:'' }}">
+            {% if form.email.errors %}
+              <div class="text-danger">{{ form.email.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="id_phone" class="form-label">Phone</label>
+            <input type="text" name="phone" id="id_phone" class="form-control" value="{{ form.phone.value|default:'' }}">
+            {% if form.phone.errors %}
+              <div class="text-danger">{{ form.phone.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="id_department" class="form-label">Department</label>
+            <input type="text" name="department" id="id_department" class="form-control" value="{{ form.department.value|default:'' }}">
+            {% if form.department.errors %}
+              <div class="text-danger">{{ form.department.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="id_base_salary" class="form-label">Base Salary</label>
+            <input type="number" name="base_salary" id="id_base_salary" class="form-control" step="0.01" value="{{ form.base_salary.value|default:'' }}">
+            {% if form.base_salary.errors %}
+              <div class="text-danger">{{ form.base_salary.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">Add Employee</button>
+        </form>
+      </div>
+    </div>
+  </div>  
+{% endblock content %}

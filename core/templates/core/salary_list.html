@@ -1,0 +1,45 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="bg-primary p-2 text-center text-white">Salary Records</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">Employee</th>
+          <th class="text-center">Month</th>
+          <th class="text-center">Year</th>
+          <th class="text-center">Total Salary</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for salary in salaries %}
+        <tr>
+          <td class="text-center">{{ salary.employee.name }}</td>
+          <td class="text-center">{{ salary.month }}</td>
+          <td class="text-center">{{ salary.year }}</td>
+          <td class="text-center">₹{{ salary.total_salary_made|floatformat:"2" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4" class="text-center text-danger">No salary records found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="pagination d-flex justify-content-between align-items-center">
+      {% if salaries.has_previous %}
+        <a class="btn btn-secondary" href="?page={{ salaries.previous_page_number }}">Previous</a>
+      {% else %}
+        <span></span>
+      {% endif %}
+      <span>Page {{ salaries.number }} of {{ salaries.paginator.num_pages }}</span>
+      {% if salaries.has_next %}
+        <a class="btn btn-secondary" href="?page={{ salaries.next_page_number }}">Next</a>
+      {% else %}
+        <span></span>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}
+  

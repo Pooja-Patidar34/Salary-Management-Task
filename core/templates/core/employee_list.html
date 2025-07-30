@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+  <div class="container mt-4">
+    <h2 class="bg-primary p-2 text-white text-center">Employees</h2>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr class="text-center">
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Latest Salary</th>
+          <th>Delete Employee</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in employee_data %}
+          <tr class="text-center">
+            <td>{{ item.employee.name }}</td>
+            <td>{{ item.employee.email }}</td>
+            <td>{{ item.employee.phone }}</td>
+            <td>₹ {{ item.latest_salary|floatformat:"2"}}</td>
+            <td>
+              <a href="{% url 'delete' item.employee.pk %}">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}
